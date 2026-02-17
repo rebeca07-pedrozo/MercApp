@@ -1,0 +1,1 @@
+![Texto alternativo](BD\MERCAPP.png)
