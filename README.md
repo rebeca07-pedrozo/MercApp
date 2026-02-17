@@ -4,6 +4,8 @@
 
 
 
-``` http://127.0.0.1:8000/productos
+```
     source env_scraping/Scripts/activate 
+    http://127.0.0.1:8000/productos
+    
 ```
