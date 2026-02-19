@@ -6,6 +6,7 @@
 
 ```
     source env_scraping/Scripts/activate 
+    uvicorn api:app --reload
     http://127.0.0.1:8000/productos
     
 ```
