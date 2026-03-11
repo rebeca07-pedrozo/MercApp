@@ -8,7 +8,6 @@
 
 <ion-content class="home-content">
 
-  <!-- Barra de búsqueda -->
   <div class="search-section">
     <ion-searchbar
       placeholder="Buscar producto (ej: leche, arroz...)"
@@ -19,22 +18,20 @@
     </ion-searchbar>
   </div>
 
-  <!-- Estado de carga -->
   <div *ngIf="loading" class="loading-state">
     <ion-spinner name="bubbles" color="primary"></ion-spinner>
     <p>Buscando precios...</p>
   </div>
 
-  <!-- Resultado de comparación -->
   <div *ngIf="comparacion && !loading" class="comparison-card">
     <h2 class="product-name">{{ comparacion.nombre }}</h2>
     <p class="product-brand" *ngIf="comparacion.marca">{{ comparacion.marca }}</p>
 
     <div class="stores-grid">
-      <!-- Olímpica -->
       <div class="store-card" [class.cheapest]="comparacion.masBarato === 'Olímpica'">
         <div class="store-logo olimpica">🟢 Olímpica</div>
         <div *ngIf="comparacion.olimpica; else noDisp">
+          <div class="cantidad">{{ comparacion.olimpica.cantidad }}</div>
           <div class="price">${{ comparacion.olimpica.precio | number:'1.0-0' }}</div>
           <div class="updated">{{ comparacion.olimpica.fecha_actualizacion | date:'dd/MM/yy' }}</div>
         </div>
@@ -44,10 +41,10 @@
         <div class="badge" *ngIf="comparacion.masBarato === 'Olímpica'">💰 Más barato</div>
       </div>
 
-      <!-- Éxito -->
       <div class="store-card" [class.cheapest]="comparacion.masBarato === 'Éxito'">
         <div class="store-logo exito">🔴 Éxito</div>
         <div *ngIf="comparacion.exito; else noDisp2">
+          <div class="cantidad">{{ comparacion.exito.cantidad }}</div>
           <div class="price">${{ comparacion.exito.precio | number:'1.0-0' }}</div>
           <div class="updated">{{ comparacion.exito.fecha_actualizacion | date:'dd/MM/yy' }}</div>
         </div>
@@ -58,14 +55,12 @@
       </div>
     </div>
 
-    <!-- Diferencia de precio -->
     <div *ngIf="comparacion.diferencia" class="diff-banner">
       Ahorras <strong>${{ comparacion.diferencia | number:'1.0-0' }}</strong>
       comprando en <strong>{{ comparacion.masBarato }}</strong>
     </div>
   </div>
 
-  <!-- Lista general de productos -->
   <div *ngIf="!comparacion && !loading">
     <ion-list-header>
       <ion-label>Todos los productos</ion-label>
