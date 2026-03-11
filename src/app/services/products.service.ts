@@ -22,42 +22,11 @@ export class ProductsService {
     });
   }
 
-  compararPrecios(nombre: string): Observable<ComparacionProducto> {
-  return this.buscarProducto(nombre).pipe(
-    map(productos => {
-      // Filtramos por nombre
-      const filtrados = productos.filter(p =>
-        p.nombre?.toLowerCase().includes(nombre.toLowerCase())
-      );
-
-      const olimpica = filtrados.find(p =>
-        p.tienda?.toLowerCase().includes('olimpica') ||
-        p.tienda?.toLowerCase().includes('olímpica')
-      );
-      const exito = filtrados.find(p =>
-        p.tienda?.toLowerCase().includes('exito') ||
-        p.tienda?.toLowerCase().includes('éxito')
-      );
-
-      let diferencia: number | undefined;
-      let masBarato: string | undefined;
-
-      if (olimpica && exito) {
-        diferencia = Math.abs(olimpica.precio - exito.precio);
-        masBarato = olimpica.precio < exito.precio ? 'Olímpica' : 'Éxito';
-      }
-
-      return {
-        nombre,
-        marca: olimpica?.marca || exito?.marca || '',
-        olimpica,
-        exito,
-        diferencia,
-        masBarato
-      };
-    })
-  );
-}
+  compararPrecios(nombre: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/productos/comparar`, {
+      params: new HttpParams().set('nombre', nombre)
+    });
+  }
 
   getHistorial(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/historial`);
