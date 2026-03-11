@@ -58,7 +58,7 @@ export class AdminPage implements OnInit {
   onSegmentChange() { this.nuevoProducto = {}; this.editandoId = null; }
 
   editarProducto(p: Producto) {
-    this.editandoId = p.id;
+    this.editandoId = p.id ?? null;  // ← Fix aquí
     this.nuevoProducto = { ...p };
     this.segmento = 'agregar';
   }
@@ -77,7 +77,8 @@ export class AdminPage implements OnInit {
     }
   }
 
-  async eliminarProducto(id: number) {
+  async eliminarProducto(id: number | undefined) {  // ← Fix aquí
+    if (id == null) return;
     const alert = await this.alert.create({
       header: 'Confirmar',
       message: '¿Eliminar este producto?',
