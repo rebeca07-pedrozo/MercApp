@@ -8,9 +8,9 @@ import {
   IonSegmentButton, IonItem, IonInput, IonButton, IonIcon
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { addOutline, closeOutline } from 'ionicons/icons';
+import { addOutline, closeOutline, searchOutline } from 'ionicons/icons';
 import { ProductsService } from '../../services/products.service';
-import { Producto, ComparacionProducto } from '../../models/product.model';
+import { Producto } from '../../models/product.model';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
   segmento = 'comparar';
   searchTerm = '';
   productos: Producto[] = [];
-  comparacion: ComparacionProducto | null = null;
+  comparaciones: any[] = [];
   loading = false;
 
   precioOriginal: number = 0;
@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
     private productsService: ProductsService,
     private http: HttpClient
   ) {
-    addIcons({ addOutline, closeOutline });
+    addIcons({ addOutline, closeOutline, searchOutline });
   }
 
   ngOnInit() { this.loadProductos(); }
@@ -64,13 +64,19 @@ export class HomePage implements OnInit {
 
   onSearch(event: any) {
     const term = event.target.value?.trim();
+    this.searchTerm = term || '';
+
     if (!term || term.length < 2) {
-      this.comparacion = null;
+      this.comparaciones = [];
       return;
     }
+
     this.loading = true;
     this.productsService.compararPrecios(term).subscribe({
-      next: (data) => { this.comparacion = data; this.loading = false; },
+      next: (data: any) => {
+        this.comparaciones = data.comparaciones || [];
+        this.loading = false;
+      },
       error: () => { this.loading = false; }
     });
   }
