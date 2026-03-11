@@ -4,6 +4,7 @@ export interface Producto {
   marca: string;
   precio: number;
   tienda: string;
+  cantidad: string;
   fecha_actualizacion: string;
 }
 
