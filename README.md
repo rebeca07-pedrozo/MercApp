@@ -2,7 +2,7 @@
 
 > Compara precios de supermercados en Colombia y ahorra en cada mercado.
 
-![Bienvenida](C:\Users\USUARIO\MercApp\MercApp\images\Login.png)
+![Bienvenida](images/Login.png)
 
 ---
 
@@ -109,15 +109,6 @@ Copyright (c) 2026 — Ver archivo [LICENSE](LICENSE)
 *MercApp — Porque cada peso cuenta 🇨🇴*
 ```
 
----
 
-**LICENSE** (crea un archivo llamado `LICENSE` sin extensión):
-```
 Copyright (c) 2025 [Rebeca Pedrozo Cueto]
 
-Se concede permiso para usar este software únicamente con fines de
-visualización y evaluación. Queda prohibida la copia, modificación,
-distribución, sublicencia o uso comercial sin autorización expresa
-y por escrito del autor.
-
-Este software se proporciona "tal cual", sin garantía de ningún tipo.
