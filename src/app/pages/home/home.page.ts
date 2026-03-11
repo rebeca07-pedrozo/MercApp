@@ -35,12 +35,10 @@ export class HomePage implements OnInit {
   comparacion: ComparacionProducto | null = null;
   loading = false;
 
-  // Calculadora descuento
   precioOriginal: number = 0;
   porcentajeDescuento: number = 0;
   resultadoDescuento: any = null;
 
-  // Planea tu mercado
   nuevoItem = '';
   listaItems: string[] = [];
   resultadoMercado: any[] = [];
@@ -77,7 +75,6 @@ export class HomePage implements OnInit {
     });
   }
 
-  // ===== CALCULADORA DESCUENTO =====
   calcularDescuento() {
     if (!this.precioOriginal || !this.porcentajeDescuento) return;
     const valorDescuento = (this.precioOriginal * this.porcentajeDescuento) / 100;
@@ -85,7 +82,6 @@ export class HomePage implements OnInit {
     this.resultadoDescuento = { valorDescuento, precioFinal };
   }
 
-  // ===== PLANEA TU MERCADO =====
   agregarItem() {
     const item = this.nuevoItem.trim();
     if (item && !this.listaItems.includes(item)) {
