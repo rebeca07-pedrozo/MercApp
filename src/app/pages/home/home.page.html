@@ -1,88 +1,207 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      🛒 MercApp — Comparador
-    </ion-title>
+    <ion-title>🛒 MercApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home-content">
 
-  <div class="search-section">
-    <ion-searchbar
-      placeholder="Buscar producto (ej: leche, arroz...)"
-      [(ngModel)]="searchTerm"
-      (ionInput)="onSearch($event)"
-      debounce="400"
-      animated>
-    </ion-searchbar>
-  </div>
+  <ion-segment [(ngModel)]="segmento" class="main-segment">
+    <ion-segment-button value="comparar">🔍 Comparar</ion-segment-button>
+    <ion-segment-button value="descuento">🏷️ Descuento</ion-segment-button>
+    <ion-segment-button value="mercado">🛒 Mi Mercado</ion-segment-button>
+  </ion-segment>
 
-  <div *ngIf="loading" class="loading-state">
-    <ion-spinner name="bubbles" color="primary"></ion-spinner>
-    <p>Buscando precios...</p>
-  </div>
-
-  <div *ngIf="comparacion && !loading" class="comparison-card">
-    <h2 class="product-name">{{ comparacion.nombre }}</h2>
-    <p class="product-brand" *ngIf="comparacion.marca">{{ comparacion.marca }}</p>
-
-    <div class="stores-grid">
-      <div class="store-card" [class.cheapest]="comparacion.masBarato === 'Olímpica'">
-        <div class="store-logo olimpica">🟢 Olímpica</div>
-        <div *ngIf="comparacion.olimpica; else noDisp">
-          <div class="cantidad">{{ comparacion.olimpica.cantidad }}</div>
-          <div class="price">${{ comparacion.olimpica.precio | number:'1.0-0' }}</div>
-          <div class="updated">{{ comparacion.olimpica.fecha_actualizacion | date:'dd/MM/yy' }}</div>
-        </div>
-        <ng-template #noDisp>
-          <div class="no-price">No disponible</div>
-        </ng-template>
-        <div class="badge" *ngIf="comparacion.masBarato === 'Olímpica'">💰 Más barato</div>
-      </div>
-
-      <div class="store-card" [class.cheapest]="comparacion.masBarato === 'Éxito'">
-        <div class="store-logo exito">🔴 Éxito</div>
-        <div *ngIf="comparacion.exito; else noDisp2">
-          <div class="cantidad">{{ comparacion.exito.cantidad }}</div>
-          <div class="price">${{ comparacion.exito.precio | number:'1.0-0' }}</div>
-          <div class="updated">{{ comparacion.exito.fecha_actualizacion | date:'dd/MM/yy' }}</div>
-        </div>
-        <ng-template #noDisp2>
-          <div class="no-price">No disponible</div>
-        </ng-template>
-        <div class="badge" *ngIf="comparacion.masBarato === 'Éxito'">💰 Más barato</div>
-      </div>
+  <div *ngIf="segmento === 'comparar'">
+    <div class="search-section">
+      <ion-searchbar
+        placeholder="Buscar producto (ej: leche, arroz...)"
+        [(ngModel)]="searchTerm"
+        (ionInput)="onSearch($event)"
+        debounce="400"
+        animated>
+      </ion-searchbar>
     </div>
 
-    <div *ngIf="comparacion.diferencia" class="diff-banner">
-      Ahorras <strong>${{ comparacion.diferencia | number:'1.0-0' }}</strong>
-      comprando en <strong>{{ comparacion.masBarato }}</strong>
+    <div *ngIf="loading" class="loading-state">
+      <ion-spinner name="bubbles" color="primary"></ion-spinner>
+      <p>Buscando precios...</p>
     </div>
-  </div>
 
-  <div *ngIf="!comparacion && !loading">
-    <ion-list-header>
-      <ion-label>Todos los productos</ion-label>
-    </ion-list-header>
+    <div *ngIf="comparacion && !loading" class="comparison-card">
+      <h2 class="product-name">{{ comparacion.nombre }}</h2>
+      <p class="product-brand" *ngIf="comparacion.marca">{{ comparacion.marca }}</p>
 
-    <ion-card *ngFor="let p of productos" class="product-item">
-      <ion-card-content>
-        <div class="product-row">
-          <div>
-            <strong>{{ p.nombre }}</strong>
-            <p>{{ p.marca }}</p>
+      <div class="stores-grid">
+        <div class="store-card" [class.cheapest]="comparacion.masBarato === 'Olímpica'">
+          <div class="store-logo olimpica">🟢 Olímpica</div>
+          <div *ngIf="comparacion.olimpica; else noDisp">
+            <div class="cantidad">{{ comparacion.olimpica.cantidad }}</div>
+            <div class="price">${{ comparacion.olimpica.precio | number:'1.0-0' }}</div>
+            <div class="updated">{{ comparacion.olimpica.fecha_actualizacion | date:'dd/MM/yy' }}</div>
           </div>
-          <div class="price-tag">
-            <span class="tienda-badge" [class.olimpica-badge]="(p.tienda || '').toLowerCase().includes('olimpica')"
-              [class.exito-badge]="(p.tienda || '').toLowerCase().includes('exito')">
-              {{ p.tienda }}
-            </span>
-            <strong>${{ p.precio | number:'1.0-0' }}</strong>
+          <ng-template #noDisp>
+            <div class="no-price">No disponible</div>
+          </ng-template>
+          <div class="badge" *ngIf="comparacion.masBarato === 'Olímpica'">💰 Más barato</div>
+        </div>
+
+        <div class="store-card" [class.cheapest]="comparacion.masBarato === 'Éxito'">
+          <div class="store-logo exito">🔴 Éxito</div>
+          <div *ngIf="comparacion.exito; else noDisp2">
+            <div class="cantidad">{{ comparacion.exito.cantidad }}</div>
+            <div class="price">${{ comparacion.exito.precio | number:'1.0-0' }}</div>
+            <div class="updated">{{ comparacion.exito.fecha_actualizacion | date:'dd/MM/yy' }}</div>
+          </div>
+          <ng-template #noDisp2>
+            <div class="no-price">No disponible</div>
+          </ng-template>
+          <div class="badge" *ngIf="comparacion.masBarato === 'Éxito'">💰 Más barato</div>
+        </div>
+      </div>
+
+      <div *ngIf="comparacion.diferencia" class="diff-banner">
+        Ahorras <strong>${{ comparacion.diferencia | number:'1.0-0' }}</strong>
+        comprando en <strong>{{ comparacion.masBarato }}</strong>
+      </div>
+    </div>
+
+    <div *ngIf="!comparacion && !loading">
+      <ion-list-header>
+        <ion-label>Todos los productos</ion-label>
+      </ion-list-header>
+      <ion-card *ngFor="let p of productos" class="product-item">
+        <ion-card-content>
+          <div class="product-row">
+            <div>
+              <strong>{{ p.nombre }}</strong>
+              <p>{{ p.marca }}</p>
+              <small>{{ p.cantidad }}</small>
+            </div>
+            <div class="price-tag">
+              <span class="tienda-badge"
+                [class.olimpica-badge]="(p.tienda || '').toLowerCase().includes('olimpica')"
+                [class.exito-badge]="(p.tienda || '').toLowerCase().includes('exito')">
+                {{ p.tienda }}
+              </span>
+              <strong>${{ p.precio | number:'1.0-0' }}</strong>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="segmento === 'descuento'" class="descuento-section">
+    <div class="section-header">
+      <h2>🏷️ Calcula tu Descuento</h2>
+      <p>¿Viste un descuento? Calcula cuánto ahorras acá!</p>
+    </div>
+
+    <ion-card class="calc-card">
+      <ion-card-content>
+        <ion-item lines="none" class="calc-input">
+          <ion-label position="floating">Precio original ($)</ion-label>
+          <ion-input type="number" [(ngModel)]="precioOriginal" placeholder="ej: 50000"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="calc-input">
+          <ion-label position="floating">Descuento (%)</ion-label>
+          <ion-input type="number" [(ngModel)]="porcentajeDescuento" placeholder="ej: 20"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" class="calc-btn" (click)="calcularDescuento()">
+          Calcular 
+        </ion-button>
+
+        <div *ngIf="resultadoDescuento" class="resultado-descuento">
+          <div class="resultado-item">
+            <span>Precio original</span>
+            <strong>${{ precioOriginal | number:'1.0-0' }}</strong>
+          </div>
+          <div class="resultado-item descuento">
+            <span>Descuento ({{ porcentajeDescuento }}%)</span>
+            <strong>- ${{ resultadoDescuento.valorDescuento | number:'1.0-0' }}</strong>
+          </div>
+          <div class="resultado-item final">
+            <span> Pagas</span>
+            <strong>${{ resultadoDescuento.precioFinal | number:'1.0-0' }}</strong>
           </div>
         </div>
       </ion-card-content>
     </ion-card>
+  </div>
+
+  <div *ngIf="segmento === 'mercado'" class="mercado-section">
+    <div class="section-header">
+      <h2>🛒 Planea tu Mercado</h2>
+      <p>Escribe lo que necesitas y te decimos dónde comprarlo más barato</p>
+    </div>
+
+    <ion-card class="mercado-card">
+      <ion-card-content>
+        <div class="add-item-row">
+          <ion-input
+            [(ngModel)]="nuevoItem"
+            placeholder="ej: arroz, leche, jabón..."
+            class="item-input"
+            (keyup.enter)="agregarItem()">
+          </ion-input>
+          <ion-button (click)="agregarItem()" class="add-btn">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+        <div class="items-list" *ngIf="listaItems.length > 0">
+          <div *ngFor="let item of listaItems; let i = index" class="item-chip">
+            <span>{{ item }}</span>
+            <ion-icon name="close-outline" (click)="eliminarItem(i)"></ion-icon>
+          </div>
+        </div>
+
+        <ion-button expand="block" class="calc-btn" (click)="planearMercado()"
+          [disabled]="listaItems.length === 0 || loadingMercado">
+          <ion-spinner *ngIf="loadingMercado" name="crescent"></ion-spinner>
+          <span *ngIf="!loadingMercado">🔍 Buscar mejores precios</span>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="resultadoMercado.length > 0">
+      <ion-card *ngFor="let r of resultadoMercado" class="mercado-resultado">
+        <ion-card-content>
+          <h3>{{ r.item }}</h3>
+          <div class="mercado-grid">
+            <div class="mercado-store" *ngIf="r.olimpica">
+              <span class="store-name olimpica-text">🟢 Olímpica</span>
+              <span class="store-price">${{ r.olimpica.precio | number:'1.0-0' }}</span>
+              <small>{{ r.olimpica.cantidad }}</small>
+            </div>
+            <div class="mercado-store" *ngIf="r.exito">
+              <span class="store-name exito-text">🔴 Éxito</span>
+              <span class="store-price">${{ r.exito.precio | number:'1.0-0' }}</span>
+              <small>{{ r.exito.cantidad }}</small>
+            </div>
+          </div>
+          <div class="recomendado" *ngIf="r.recomendado">
+            ✅ Cómpralo en <strong>{{ r.recomendado.tienda }}</strong>
+            por <strong>${{ r.recomendado.precio | number:'1.0-0' }}</strong>
+          </div>
+          <div class="no-encontrado" *ngIf="!r.olimpica && !r.exito">
+            ❌ No encontrado en ninguna tienda
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="total-card">
+        <ion-card-content>
+          <div class="total-row">
+            <span> Total estimado</span>
+            <strong>${{ totalMercado | number:'1.0-0' }}</strong>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 
 </ion-content>
