@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>🔧 Panel Administrador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="admin-content">
+
+  <ion-segment [(ngModel)]="segmento" (ionChange)="onSegmentChange()">
+    <ion-segment-button value="productos">Productos</ion-segment-button>
+    <ion-segment-button value="agregar">Agregar</ion-segment-button>
+  </ion-segment>
+
+  <!-- Lista de productos -->
+  <div *ngIf="segmento === 'productos'">
+    <ion-searchbar [(ngModel)]="filtro" placeholder="Filtrar productos..."></ion-searchbar>
+    <ion-card *ngFor="let p of productosFiltrados" class="admin-item">
+      <ion-card-content>
+        <div class="admin-row">
+          <div>
+            <strong>{{ p.nombre }}</strong>
+            <p>{{ p.marca }} — {{ p.tienda }}</p>
+            <p class="price-text">${{ p.precio | number:'1.0-0' }}</p>
+          </div>
+          <div class="admin-actions">
+            <ion-button fill="clear" color="primary" (click)="editarProducto(p)">
+              <ion-icon name="pencil-outline"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="eliminarProducto(p.id)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Formulario agregar -->
+  <div *ngIf="segmento === 'agregar'" class="add-form">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ editandoId ? 'Editar' : 'Agregar' }} Producto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item><ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="nuevoProducto.nombre"></ion-input></ion-item>
+        <ion-item><ion-label position="floating">Marca</ion-label>
+          <ion-input [(ngModel)]="nuevoProducto.marca"></ion-input></ion-item>
+        <ion-item><ion-label position="floating">Precio</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevoProducto.precio"></ion-input></ion-item>
+        <ion-item>
+          <ion-label>Tienda</ion-label>
+          <ion-select [(ngModel)]="nuevoProducto.tienda">
+            <ion-select-option value="Olímpica">Olímpica</ion-select-option>
+            <ion-select-option value="Éxito">Éxito</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button expand="block" (click)="guardarProducto()" class="save-btn">
+          {{ editandoId ? 'Actualizar' : 'Guardar' }} Producto
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

@@ -1,0 +1,58 @@
+.scanner-content { --background: #1a1a2e; }
+
+.camera-actions {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cam-btn {
+  --background: linear-gradient(135deg, #667eea, #764ba2);
+  --border-radius: 14px;
+  height: 54px;
+  font-weight: 700;
+}
+
+.gallery-btn {
+  --border-radius: 14px;
+  --color: #a8b2d8;
+  --border-color: rgba(255,255,255,0.2);
+  height: 54px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #a8b2d8;
+
+  ion-icon { font-size: 64px; opacity: 0.3; display: block; margin: 0 auto 16px; }
+  p { font-size: 14px; }
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+
+.photo-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  .delete-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    --color: white;
+    background: rgba(220,50,50,0.8);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+  }
+}

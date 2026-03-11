@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content">
+
+  <div class="profile-header" *ngIf="user">
+    <div class="avatar">{{ user.email[0].toUpperCase() }}</div>
+    <h2>{{ user.email }}</h2>
+    <ion-badge [color]="getRolColor()">{{ user.rol | uppercase }}</ion-badge>
+  </div>
+
+  <!-- Plan actual -->
+  <ion-card class="plan-card">
+    <ion-card-header>
+      <ion-card-title>Tu Plan Actual</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="user?.rol === 'basic'" class="current-plan basic">
+        <p>🆓 Plan Básico — Gratis</p>
+        <p>Acceso a comparación de precios</p>
+        <ion-button expand="block" (click)="upgradeToPremium()" class="upgrade-btn">
+          ⭐ Mejorar a Premium — $9.900/mes
+        </ion-button>
+      </div>
+      <div *ngIf="user?.rol === 'premium'" class="current-plan premium">
+        <p>⭐ Plan Premium Activo</p>
+        <p>Tienes acceso a análisis y gráficas</p>
+      </div>
+      <div *ngIf="user?.rol === 'admin'" class="current-plan admin">
+        <p>🔧 Administrador</p>
+        <p>Acceso completo al sistema</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección de pago PayPal -->
+  <ion-card *ngIf="showPayment" class="payment-card">
+    <ion-card-header>
+      <ion-card-title>💳 Pagar con PayPal</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="payment-desc">Plan Premium — $9.900 COP / mes</p>
+      <!-- Aquí se renderiza el botón de PayPal -->
+      <div id="paypal-button-container"></div>
+      <ion-button expand="block" fill="clear" (click)="showPayment = false" class="cancel-btn">
+        Cancelar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="danger" fill="outline" class="logout-btn" (click)="logout()">
+    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+    Cerrar Sesión
+  </ion-button>
+
+</ion-content>

@@ -1,0 +1,135 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+* { box-sizing: border-box; }
+
+ion-content { --padding-bottom: 20px; }
+
+.mercapp-tabs {
+  --background: #1a1a2e;
+  --color: #a8b2d8;
+  --color-selected: #667eea;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.register-content, .profile-content, .admin-content {
+  --background: #f0f4f8;
+}
+
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  padding: 24px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 400px;
+  background: white;
+  border-radius: 24px;
+  padding: 28px 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+
+  h2 { font-weight: 800; font-size: 22px; margin-bottom: 4px; }
+  p { color: #888; margin-bottom: 24px; }
+}
+
+.input-item {
+  --background: #f5f5f5;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.error-msg {
+  color: #e53935;
+  font-size: 13px;
+  padding: 4px;
+}
+
+.register-btn, .save-btn, .upgrade-btn {
+  --background: linear-gradient(135deg, #667eea, #764ba2);
+  --border-radius: 12px;
+  margin-top: 16px;
+  height: 52px;
+  font-weight: 700;
+}
+
+.pay-btn {
+  --background: #4caf50;
+  --border-radius: 12px;
+  margin-top: 16px;
+}
+
+.logout-btn {
+  margin: 20px 16px;
+}
+
+.profile-header {
+  text-align: center;
+  padding: 32px 20px 20px;
+
+  .avatar {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    margin: 0 auto 12px;
+  }
+
+  h2 { font-weight: 700; margin-bottom: 8px; }
+}
+
+.plan-card, .payment-card { margin: 0 16px 16px; border-radius: 16px; }
+
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.admin-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .admin-actions { display: flex; }
+  .price-text { color: #667eea; font-weight: 700; }
+}

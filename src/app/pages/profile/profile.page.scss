@@ -1,0 +1,74 @@
+ion-content {
+  --background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.profile-header {
+  text-align: center;
+  padding: 32px 20px 20px;
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    margin: 0 auto 12px;
+  }
+
+  h2 { font-weight: 700; margin-bottom: 8px; color: white; }
+  ion-badge { font-size: 13px; padding: 4px 12px; }
+}
+
+ion-card {
+  --background: rgba(255,255,255,0.08);
+  --color: white;
+  border-radius: 16px;
+  margin: 0 16px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+ion-card-title { color: white; }
+
+ion-item {
+  --background: rgba(255,255,255,0.06);
+  --color: white;
+  --placeholder-color: #a8b2d8;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.current-plan {
+  p { color: #a8b2d8; margin: 4px 0; }
+  p:first-child { color: white; font-weight: 700; font-size: 16px; }
+}
+
+.upgrade-btn {
+  --background: linear-gradient(135deg, #667eea, #764ba2);
+  --border-radius: 12px;
+  margin-top: 16px;
+  height: 52px;
+  font-weight: 700;
+}
+
+.pay-btn {
+  --background: #4caf50;
+  --border-radius: 12px;
+  margin-top: 16px;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.logout-btn {
+  margin: 20px 16px;
+  --color: #ff6b6b;
+  --border-color: #ff6b6b;
+}

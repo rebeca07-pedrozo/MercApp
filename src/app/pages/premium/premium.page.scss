@@ -1,0 +1,76 @@
+ion-content {
+  --background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.welcome-banner {
+  text-align: center;
+  padding: 32px 20px 16px;
+
+  .star-icon { font-size: 48px; margin-bottom: 8px; }
+  h2 { color: white; font-weight: 800; font-size: 22px; margin: 0; }
+  p { color: #a8b2d8; font-size: 14px; margin-top: 4px; }
+}
+
+ion-card {
+  --background: rgba(255,255,255,0.08);
+  --color: white;
+  border-radius: 16px;
+  margin: 0 16px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+ion-card-title { color: white; font-size: 15px; }
+
+h3 { color: white; font-weight: 700; margin-bottom: 16px; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stat-item {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .stat-number { font-size: 18px; font-weight: 800; color: #667eea; }
+  .stat-label { font-size: 11px; color: #a8b2d8; margin-top: 4px; }
+}
+
+.diff-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+  .rank {
+    width: 24px; height: 24px;
+    background: #667eea;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: white;
+    flex-shrink: 0;
+  }
+
+  .diff-info {
+    flex: 1;
+    strong { color: white; font-size: 13px; }
+    p { color: #a8b2d8; font-size: 11px; margin: 2px 0 0; }
+  }
+
+  .diff-badge {
+    background: #4caf50;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+}
+
+.empty { color: #a8b2d8; text-align: center; padding: 20px; }

@@ -1,0 +1,32 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="mercapp-tabs">
+
+    <ion-tab-button tab="home" href="/tabs/home">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="scanner" href="/tabs/scanner">
+      <ion-icon name="scan-outline"></ion-icon>
+      <ion-label>Cámara</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile" href="/tabs/profile">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>Perfil</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="premium" href="/tabs/premium"
+      *ngIf="auth.hasRole(['premium', 'admin'])">
+      <ion-icon name="star-outline"></ion-icon>
+      <ion-label>Premium</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="admin" href="/tabs/admin"
+      *ngIf="auth.hasRole(['admin'])">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>Admin</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>⭐ Premium</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="premium-content">
+
+  <div class="welcome-banner">
+    <div class="star-icon">⭐</div>
+    <h2>¡Bienvenido Premium!</h2>
+    <p>Aquí tienes análisis exclusivos de precios</p>
+  </div>
+
+  <ion-card class="stat-card">
+    <ion-card-content>
+      <h3>📊 Resumen del mercado</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">{{ totalProductos }}</span>
+          <span class="stat-label">Productos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Tiendas</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ promedioExito | currency:'COP':'$':'1.0-0' }}</span>
+          <span class="stat-label">Prom. Éxito</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ promedioOlimpica | currency:'COP':'$':'1.0-0' }}</span>
+          <span class="stat-label">Prom. Olímpica</span>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="list-card">
+    <ion-card-header>
+      <ion-card-title>🏆 Top 5 — Mayor diferencia de precio</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let item of topDiferencias; let i = index" class="diff-item">
+        <span class="rank">{{ i + 1 }}</span>
+        <div class="diff-info">
+          <strong>{{ item.nombre }}</strong>
+          <p>Olímpica: ${{ item.precioOlimpica | number:'1.0-0' }} — Éxito: ${{ item.precioExito | number:'1.0-0' }}</p>
+        </div>
+        <span class="diff-badge">${{ item.diferencia | number:'1.0-0' }}</span>
+      </div>
+      <div *ngIf="topDiferencias.length === 0" class="empty">
+        <p>No hay suficientes datos aún</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

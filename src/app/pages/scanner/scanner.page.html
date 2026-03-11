@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>📷 Cámara MercApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="scanner-content">
+
+  <div class="camera-actions">
+    <ion-button expand="block" class="cam-btn" (click)="tomarFoto()">
+      <ion-icon name="camera-outline" slot="start"></ion-icon>
+      Tomar Foto
+    </ion-button>
+    <ion-button expand="block" fill="outline" class="gallery-btn" (click)="seleccionarGaleria()">
+      <ion-icon name="images-outline" slot="start"></ion-icon>
+      Desde Galería
+    </ion-button>
+  </div>
+
+  <div *ngIf="(cameraService.photos$ | async)?.length === 0" class="empty-state">
+    <ion-icon name="camera-outline"></ion-icon>
+    <p>No hay fotos aún. ¡Toma una foto de un producto!</p>
+  </div>
+
+  <div class="photos-grid">
+    <div *ngFor="let photo of cameraService.photos$ | async" class="photo-item">
+      <img [src]="photo.webviewPath" alt="Foto producto" />
+      <ion-button fill="clear" color="danger" class="delete-btn" (click)="eliminarFoto(photo)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

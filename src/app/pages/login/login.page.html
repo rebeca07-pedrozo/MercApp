@@ -1,0 +1,51 @@
+<ion-content class="login-content">
+  <div class="login-container">
+    <div class="logo-section">
+      <div class="logo-icon">🛒</div>
+      <h1 class="app-title">MercApp</h1>
+      <p class="app-subtitle">Compara precios, ahorra más</p>
+    </div>
+
+    <div class="form-card">
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input
+          type="email"
+          placeholder="Correo electrónico"
+          [(ngModel)]="email"
+          labelPlacement="floating">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Contraseña"
+          [(ngModel)]="password"
+          labelPlacement="floating">
+        </ion-input>
+        <ion-icon
+          [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+          slot="end"
+          (click)="togglePassword()"
+          style="cursor:pointer">
+        </ion-icon>
+      </ion-item>
+
+      <div *ngIf="errorMsg" class="error-msg">
+        <ion-icon name="alert-circle-outline"></ion-icon> {{ errorMsg }}
+      </div>
+
+      <ion-button expand="block" class="login-btn" (click)="login()" [disabled]="loading">
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Iniciar Sesión</span>
+      </ion-button>
+
+      <div class="register-link">
+        ¿No tienes cuenta?
+        <span (click)="goToRegister()">Regístrate aquí</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
