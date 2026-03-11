@@ -1,21 +1,41 @@
-.home-content { --background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+.home-content {
+  --background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
 
+.main-segment {
+  --background: rgba(255,255,255,0.05);
+  margin: 12px 16px;
+  border-radius: 12px;
+
+  ion-segment-button {
+    --color: #a8b2d8;
+    --color-checked: #ffffff;
+    --indicator-color: #667eea;
+    font-size: 12px;
+  }
+}
 
 .search-section {
-  padding: 16px;
-  ion-searchbar { --border-radius: 16px; --box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  padding: 8px 16px 16px;
+  ion-searchbar {
+    --background: rgba(255,255,255,0.08);
+    --color: white;
+    --placeholder-color: #a8b2d8;
+    --border-radius: 16px;
+    --box-shadow: none;
+    --icon-color: #a8b2d8;
+  }
 }
 
 .comparison-card {
   margin: 0 16px 16px;
   background: rgba(255,255,255,0.08);
-  color: white;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
 
-.product-name { font-size: 20px; font-weight: 700; margin: 0 0 4px; color: white; }
-.product-brand { color: #a8b2d8; font-size: 14px; margin: 0 0 16px; }
+  .product-name { font-size: 20px; font-weight: 700; margin: 0 0 4px; color: white; }
+  .product-brand { color: #a8b2d8; font-size: 14px; margin: 0 0 16px; }
 }
 
 .stores-grid {
@@ -27,17 +47,22 @@
 .store-card {
   border-radius: 16px;
   padding: 16px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
   border: 2px solid transparent;
   text-align: center;
   position: relative;
 
-  &.cheapest { border-color: #4caf50; background: #f1f8e9; }
+  &.cheapest {
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.15);
+  }
 
-  .store-logo { font-weight: 700; font-size: 14px; margin-bottom: 8px; letter-spacing: 0.5px; color: #1a1a2e; }
-  .price { font-size: 24px; font-weight: 800; color: #1a1a2e; }
-  .updated { font-size: 11px; color: #aaa; margin-top: 4px; }
-  .no-price { color: #ccc; font-size: 14px; margin-top: 12px; }
+  .store-logo { font-weight: 700; font-size: 13px; margin-bottom: 8px; color: white; }
+  .cantidad { font-size: 11px; color: #a8b2d8; margin-bottom: 4px; font-weight: 600; }
+  .price { font-size: 22px; font-weight: 800; color: #1a1a2e; background: white; border-radius: 8px; padding: 4px; margin: 4px 0; }
+  .updated { font-size: 11px; color: #a8b2d8; margin-top: 4px; }
+  .no-price { color: #a8b2d8; font-size: 14px; margin-top: 12px; }
+
   .badge {
     position: absolute;
     top: -8px; right: -8px;
@@ -47,13 +72,6 @@
     padding: 2px 8px;
     border-radius: 20px;
     font-weight: 700;
-
-  .cantidad { 
-  font-size: 12px; 
-  color: #a8b2d8; 
-  margin-bottom: 4px;
-  font-weight: 600;
-    }
   }
 }
 
@@ -67,27 +85,35 @@
   font-size: 14px;
 }
 
+ion-list-header ion-label { color: #a8b2d8; font-size: 14px; }
+
 .product-item {
   margin: 8px 16px;
+  --background: rgba(255,255,255,0.06);
+  --color: white;
   border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
 
   .product-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    strong { color: white; }
+    p { color: #a8b2d8; font-size: 12px; margin: 2px 0; }
+    small { color: #667eea; font-size: 11px; }
   }
 
+  .price-tag { text-align: right; }
   .tienda-badge {
     font-size: 11px;
     padding: 2px 8px;
     border-radius: 20px;
     display: block;
     margin-bottom: 4px;
-    text-align: center;
   }
-
-  .olimpica-badge { background: #2e7d32; color: #ffffff; font-weight: 700; }
-  .exito-badge { background: #c62828; color: #ffffff; font-weight: 700; }
+  .olimpica-badge { background: #2e7d32; color: white; font-weight: 700; }
+  .exito-badge { background: #c62828; color: white; font-weight: 700; }
 }
 
 .loading-state {
@@ -95,5 +121,171 @@
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  color: #888;
+  color: #a8b2d8;
+}
+
+.section-header {
+  padding: 20px 16px 8px;
+  h2 { color: white; font-weight: 800; font-size: 20px; margin: 0; }
+  p { color: #a8b2d8; font-size: 13px; margin-top: 4px; }
+}
+
+.descuento-section, .mercado-section { padding-bottom: 20px; }
+
+.calc-card, .mercado-card {
+  margin: 0 16px 16px;
+  --background: rgba(255,255,255,0.08);
+  --color: white;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.calc-input {
+  --background: rgba(255,255,255,0.06);
+  --color: white;
+  --placeholder-color: #a8b2d8;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.calc-btn {
+  --background: linear-gradient(135deg, #667eea, #764ba2);
+  --border-radius: 12px;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.resultado-descuento {
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.resultado-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.06);
+  margin-bottom: 2px;
+  color: white;
+
+  &.descuento strong { color: #ff6b6b; }
+  &.final {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 0 0 12px 12px;
+    strong { color: white; font-size: 18px; }
+  }
+}
+
+.add-item-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+
+  .item-input {
+    flex: 1;
+    --background: rgba(255,255,255,0.06);
+    --color: white;
+    --placeholder-color: #a8b2d8;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .add-btn {
+    --background: #667eea;
+    --border-radius: 10px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.items-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.item-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(102, 126, 234, 0.3);
+  border: 1px solid #667eea;
+  border-radius: 20px;
+  padding: 4px 10px;
+  color: white;
+  font-size: 13px;
+
+  ion-icon { cursor: pointer; color: #ff6b6b; font-size: 14px; }
+}
+
+.mercado-resultado {
+  margin: 0 16px 12px;
+  --background: rgba(255,255,255,0.08);
+  --color: white;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  h3 { color: white; font-weight: 700; margin-bottom: 12px; font-size: 15px; }
+}
+
+.mercado-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.mercado-store {
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .store-name { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .store-price { font-size: 16px; font-weight: 800; color: white; }
+  small { color: #a8b2d8; font-size: 10px; margin-top: 2px; }
+  .olimpica-text { color: #4caf50; }
+  .exito-text { color: #ff5252; }
+}
+
+.recomendado {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #4caf50;
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: #a5d6a7;
+  font-size: 13px;
+  text-align: center;
+
+  strong { color: white; }
+}
+
+.no-encontrado {
+  color: #ff6b6b;
+  font-size: 13px;
+  text-align: center;
+  padding: 8px;
+}
+
+.total-card {
+  margin: 0 16px 16px;
+  --background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+
+    span { font-size: 16px; }
+    strong { font-size: 22px; }
+  }
 }
